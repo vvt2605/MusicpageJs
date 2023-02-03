@@ -123,7 +123,7 @@ var songDataTrend = [
   {
     title: "Suýt nữa thì",
     artist: "Andiez",
-    path: "./public/musicFile/suynuathi.mp3",
+    path: "./public/musicFile/suytnuathi.mp3",
     art: "#"
   },
   {
@@ -268,12 +268,6 @@ for (var i = 0; i < songList.length; i++) {
     loadSong();
   });
   }
-for (var i = 0; i < songListTrend.length; i++) {
-  songListTrend[i].addEventListener("click", function() {
-      currentIndex = parseInt(this.getAttribute("data-song-index"));
-      loadSong();
-    });
-    }
 
 function loadSong() {
   song.src = songData[currentIndex].path;
@@ -290,4 +284,25 @@ function loadSong() {
   pauseBtn.style.display = "inline-block";
 
 }
+for (var i = 0; i < songListTrend.length; i++) {
+  songListTrend[i].addEventListener("click", function() {
+      currentIndex = parseInt(this.getAttribute("data-song-index-trend"));
+      loadSong();
+    });
+    }
 
+function loadSong() {
+  song.src = songDataTrend[currentIndex].path;
+  songTitle.textContent = songDataTrend[currentIndex].title;
+  songArtist.textContent = songDataTrend[currentIndex].artist;
+  for (var i =0; i<songListTrend.length;i++) {
+    songListTrend[i].classList.remove("active");
+  }
+  songListTrend[currentIndex].classList.add("active");
+  song.play();
+  pauseBtn.classList.remove("fa-circle-play");
+  pauseBtn.classList.add("fa-circle-pause");
+  isplay=false;
+  pauseBtn.style.display = "inline-block";
+
+}
